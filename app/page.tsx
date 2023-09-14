@@ -1,3 +1,15 @@
+"use client"
+import MainLayout from "./layouts/MainLayout";
+
 export default function Home() {
-  return <>Hola</>;
+  return (
+    <>
+    <MainLayout>
+      <div>
+        Home
+      </div>
+    </MainLayout>
+  </>
+  )
+  
 }
