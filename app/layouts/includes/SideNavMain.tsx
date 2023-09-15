@@ -2,7 +2,9 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import MenuItem from "./MenuItem";
-
+import ClientOnly from "@/app/components/ClientOnly";
+import MenuItemFollow from "@/app/layouts/includes/MenuItemFollow";
+//import {MenuItemFollow} from ""
 interface Props {}
 
 const SideNavMain = (props: Props) => {
@@ -25,6 +27,32 @@ const SideNavMain = (props: Props) => {
               sizeString="25"
             />
           </Link>
+          <MenuItem
+            iconString="Following"
+            colorString={`${pathname === "/following" ? "#F02C56" : ""}`}
+            sizeString="25"
+          />
+          <MenuItem
+            iconString="LIVE"
+            colorString={`${pathname === "/live" ? "#F02C56" : ""}`}
+            sizeString="25"
+          />
+          <div className="border-b lg:ml-2 mt-2" />
+          <h3 className="lg:block hidden text-xs text-gray-600 font-semibold pt-4 pb-2 px-2 ">
+            Suggested accounts
+          </h3>
+          <div className="lg:hidden block pt-3" />
+          <ClientOnly>
+            <div className="cursor-pointer">
+              <MenuItemFollow
+                user={{
+                  id: "1",
+                  name: "Test User",
+                  image: "https://placehold.co/50",
+                }}
+              />
+            </div>
+          </ClientOnly>
         </div>
       </div>
     </>
