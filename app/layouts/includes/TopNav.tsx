@@ -1,9 +1,11 @@
 import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { BiSearch } from "react-icons/bi";
+import { BiSearch, BiUser } from "react-icons/bi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { FiLogOut } from "react-icons/fi";
+
 interface Props {}
 
 const TopNav = (props: Props) => {
@@ -89,10 +91,20 @@ const TopNav = (props: Props) => {
                       alt="user image"
                     />
                   </button>
-                  <div className="">
-
+                  <div className="absolute bg-white rounded-lg py-1.5 w-[200px] shadow-xl top-[42px] right-0">
+                    <button className="flex items-center w-full justify-start py-3 px-2 hover:bg-gray-100 cursor-pointer">
+                      <BiUser size="20" />
+                      <span className="pl-2 font-semibold text-sm">
+                        Profile
+                      </span>
+                    </button>
+                    <button className="flex items-center w-full justify-start py-3 px-2 hover:bg-gray-100 cursor-pointer">
+                      <FiLogOut size="20" />
+                      <span className="pl-2 font-semibold text-sm">
+                        Log out
+                      </span>
+                    </button>
                   </div>
-
                 </div>
               </div>
             )}
