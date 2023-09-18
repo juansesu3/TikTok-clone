@@ -73,6 +73,7 @@ const PostMain = ({ post }: PostMainCompTypes) => {
                 src="/images/tiktok-logo-white.png"
               />
             </div>
+
             <PostMainLikes post={post} />
           </div>
         </div>
