@@ -76,7 +76,7 @@ const TopNav = (props: Props) => {
             </button>
             {true ? (
               <div className="flex items-center">
-                <button className="flex items-center bg-[#F02C56] text-white border rounded-md px-3 py-[6px]">
+                <button className="flex items-center bg-[#F02C56] text-white border rounded-md px-6 py-[6px]">
                   log in
                 </button>
                 <BsThreeDotsVertical color="#161724" size="25" />
