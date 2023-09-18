@@ -15,7 +15,7 @@ const SideNavMain = (props: Props) => {
       <div
         id="SideNavMain"
         className={`
-        fixed z-20 bg-white pt-[70px] h-full lg:border-r w-[75px] overflow-auto
+        fixed z-20 bg-white pt-[70px] h-full lg:border-r border-r w-[75px] overflow-auto
         ${pathname === "/" ? "lg:w-[310px]" : "lg:w-[220px]"}
         `}
       >
@@ -83,7 +83,7 @@ const SideNavMain = (props: Props) => {
               </button>
             </div>
           ) : null}
-          <div className="lg:block hidden border-b lg:ml mt-2" />
+          <div className="lg:block  border-b lg:ml mt-2" />
           <div className="lg:block hidden text-[11px] text-gray-500">
             <p className="pt-4 px-2">
               About Newsroon TikTok Shop Contact Carers ByteDance

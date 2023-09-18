@@ -2,6 +2,9 @@
 import React, { useEffect } from "react";
 import { PostMainCompTypes } from "../types";
 import Link from "next/link";
+import { AiFillHeart } from "react-icons/ai";
+import { ImMusic } from "react-icons/im";
+import PostMainLikes from "./PostMainLikes";
 
 interface Props {}
 
@@ -47,9 +50,31 @@ const PostMain = ({ post }: PostMainCompTypes) => {
             {post.text}
           </p>
           <p className="text-[14px] text-gray-500 pb-0.5 ">
-            #fun #cool #SuperAwesome 
-
+            #fun #cool #SuperAwesome
           </p>
+          <p className="text[14px] pb-0.5 flex items-center font-semibold">
+            <ImMusic size="17" />
+            <span className="px-1">original sound - AWESOME</span>
+            <AiFillHeart size="20" />
+          </p>
+          <div className="mt-2.5 flex ">
+            <div className="relative min-h-[480px] max-h-[580px] max-w-[260px] flex items-center bg-black rounded-xl cursor-pointer">
+              <video
+                id={`video-${post.id}`}
+                loop
+                controls
+                muted
+                className="rounded-xl object-cover mx-auto h-full"
+                src={post?.video_url}
+              />
+              <img
+                className="absolute right-2 bottom-10"
+                width="90"
+                src="/images/tiktok-logo-white.png"
+              />
+            </div>
+            <PostMainLikes post={post} />
+          </div>
         </div>
       </div>
     </>
