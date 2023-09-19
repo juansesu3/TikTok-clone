@@ -1,5 +1,6 @@
 "use client";
 import ClientOnly from "@/app/components/ClientOnly";
+import PostUser from "@/app/components/profile/PostUser";
 import MainLayout from "@/app/layouts/MainLayout";
 import { ProfilePagesTypes } from "@/app/types";
 import { BsPencil } from "react-icons/bs";
@@ -83,6 +84,19 @@ const Profile = ({ params }: ProfilePagesTypes) => {
               Likes
             </li>
           </ul>
+          <ClientOnly>
+            <div className="mt-4 grid 2xl-grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2">
+              <PostUser
+                post={{
+                  id: "123",
+                  user_id: "345",
+                  video_url: "/beach.mp4",
+                  text: "this is a post",
+                  created_at: "date here",
+                }}
+              />
+            </div>
+          </ClientOnly>
         </div>
       </MainLayout>
     </>
