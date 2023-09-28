@@ -1,6 +1,8 @@
 import { CropperDimensions, ShowErrorObject } from "@/app/types";
+import { Cropper } from "react-advanced-cropper";
+import "react-advanced-cropper/dist/style.css";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs";
 import TextInput from "../TextInput";
@@ -19,17 +21,24 @@ const EditProfileOverlay = () => {
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [error, setError] = useState<ShowErrorObject | null>(null);
 
-  const getUploadedImage = () => {
-    console.log("getUploadedImage");
+  const getUploadedImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files && event.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setUploadedImage(URL.createObjectURL(selectedFile))
+    } else {
+      setFile(null);
+      setUploadedImage(null)
+    }
+
   };
 
-  const showError =(type:string)=>{
-    if (error && Object.entries(error).length > 0 && error?.type == type){
-      return error.message
-
+  const showError = (type: string) => {
+    if (error && Object.entries(error).length > 0 && error?.type == type) {
+      return error.message;
     }
-    return ''
-  }
+    return "";
+  };
 
   return (
     <>
@@ -103,17 +112,58 @@ const EditProfileOverlay = () => {
                     <div className="sm:w-[60%] w-full max-w-md">
                       <TextInput
                         string={userName}
-                        placeholder="User Name"
+                        placeholder="Username"
                         onUpdate={setUserName}
                         inputType="text"
-                        error={showError('userName')}
+                        error={showError("userName")}
                       />
+                      <p
+                        className={`relative text-[11px] text-gray-500 ${
+                          error ? "mt-1" : "mt-4"
+                        }`}
+                      >
+                        Username can only containe letters, numbers, undercores,
+                        and periods. Changing your username will also change
+                        your profile link.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  id="UserBioSection"
+                  className="flex flex-col sm:h-[120px] px-1.5 mt-2 w-full"
+                >
+                  <h3 className="font-semibold text-[15px] sm:mb-0 mb-1 text-gray-700 sm:w-[160px] sm:text-left text-center ">
+                    Bio
+                  </h3>
+                  <div className="flex items-center justify-center sm:-mt-6">
+                    <div className="sm:w-[60%] w-full max-w-md">
+                      <textarea
+                        id=""
+                        cols={30}
+                        rows={4}
+                        onChange={(e) => setUserBio(e.target.value)}
+                        value={userBio || ""}
+                        maxLength={80}
+                        className="resize-none w-full bg-[#F1F1F2] text-gray-800 border border-gray-300 rounded-md py-2.5 px-3 focus:outline-none "
+                      ></textarea>
+                      <p className="text-[11px] text-gray-500 ">
+                        {userBio ? userBio.length : 0}/80
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
             ) : (
-              <></>
+              <div className="w-full max-h-[420px] mx-auto bg-black circle-stencil">
+                <Cropper
+                  stencilProps={{aspectRatio:1}}
+                  className="h-[400px]"
+                  onChange={(cropper) => setCropper(cropper.getCoordinates())}
+                  src={upLoadedImage}
+
+                 />
+              </div>
             )}
           </div>
         </div>
