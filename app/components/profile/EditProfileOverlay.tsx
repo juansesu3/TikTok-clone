@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs";
 import TextInput from "../TextInput";
+import { BiLoaderCircle } from "react-icons/bi";
 
 const EditProfileOverlay = () => {
   const router = useRouter();
@@ -25,12 +26,11 @@ const EditProfileOverlay = () => {
     const selectedFile = event.target.files && event.target.files[0];
     if (selectedFile) {
       setFile(selectedFile);
-      setUploadedImage(URL.createObjectURL(selectedFile))
+      setUploadedImage(URL.createObjectURL(selectedFile));
     } else {
       setFile(null);
-      setUploadedImage(null)
+      setUploadedImage(null);
     }
-
   };
 
   const showError = (type: string) => {
@@ -39,6 +39,11 @@ const EditProfileOverlay = () => {
     }
     return "";
   };
+
+  const cropAndUpdateImage =()=>{
+    console.log('cropAndUpdateImage')
+
+  }
 
   return (
     <>
@@ -157,12 +162,71 @@ const EditProfileOverlay = () => {
             ) : (
               <div className="w-full max-h-[420px] mx-auto bg-black circle-stencil">
                 <Cropper
-                  stencilProps={{aspectRatio:1}}
+                  stencilProps={{ aspectRatio: 1 }}
                   className="h-[400px]"
                   onChange={(cropper) => setCropper(cropper.getCoordinates())}
                   src={upLoadedImage}
-
-                 />
+                />
+              </div>
+            )}
+          </div>
+          <div
+            id="ButtonSection"
+            className="absolute p-5 left-0 bottom-0 border-t border-t-gray-300 w-full"
+          >
+            {!upLoadedImage ? (
+              <div
+                id="UpdateInfoButtons"
+                className="flex items-center justify-end"
+              >
+                <button
+                  disabled={isUploading}
+                  className="flex items-center border rounded-sm px-3 py-[6px] hover:bg-gray-100 "
+                >
+                  <span className="px-2 font-medium text-[15px] ">Cancel</span>
+                </button>
+                <button
+                  disabled={isUploading}
+                  className="flex items-center bg-[#F02C56] text-white border rounded-md ml-3 px-3 py-[6px]"
+                >
+                  <span className="px-2 font-medium text-[15px] ">
+                    {isUploading ? (
+                      <BiLoaderCircle
+                        color="#ffffff"
+                        className="my-1 mx-2.5 animate-spin"
+                      />
+                    ) : (
+                      "Save"
+                    )}
+                  </span>
+                </button>
+              </div>
+            ) : (
+              <div
+                id="CropperButtons"
+                className="flex items-center justify-end"
+              >
+                <button
+                  onClick={() => setUploadedImage(null)}
+                  className="flex items-center border rounded-sm px-3 py-[6px] hover:bg-gray-100 "
+                >
+                  <span className="px-2 font-medium text-[15px] ">Cancel</span>
+                </button>
+                <button
+                  onClick={()=>cropAndUpdateImage()}
+                  className="flex items-center bg-[#F02C56] text-white border rounded-md ml-3 px-3 py-[6px]"
+                >
+                  <span className="px-2 font-medium text-[15px] ">
+                    {isUploading ? (
+                      <BiLoaderCircle
+                        color="#ffffff"
+                        className="my-1 mx-2.5 animate-spin"
+                      />
+                    ) : (
+                      "Apply"
+                    )}
+                  </span>
+                </button>
               </div>
             )}
           </div>
