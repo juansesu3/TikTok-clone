@@ -5,6 +5,9 @@ export interface RandomUsers {
   name: string;
   image: string;
 }
+export interface PostPageTypes {
+  params: { userId: string; postId: string };
+}
 export interface CropperDimensions {
   height?: number | null;
   width?: number | null;
@@ -53,6 +56,10 @@ export interface UploadError {
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
 // COMPONENT TYPES
+export interface CommentsHeaderCompTypes {
+  params: { userId: string; postId: string };
+  post: PostWithProfile;
+}
 
 export interface PostMainCompTypes {
   post: PostWithProfile;
