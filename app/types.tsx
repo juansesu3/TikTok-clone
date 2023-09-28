@@ -80,3 +80,11 @@ export interface MenuItemsTypes {
 export interface MenuItemFollowComptypes {
   user: RandomUsers;
 }
+
+export interface TextInputCompTypes {
+  string: string;
+  placeholder: string;
+  onUpdate: (newValue: string) => void;
+  inputType: string;
+  error: string;
+}

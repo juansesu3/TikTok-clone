@@ -22,7 +22,7 @@ const MenuItemFollow = ({ user }: MenuItemFollowComptypes) => {
             <p className="font-bold text-[14px] truncate">{user?.name}</p>
             <p className="ml-1 rounded-full bg-[#58D5EC] h-[14px] relative">
               <AiOutlineCheck
-                clasName="relative p-[3px]"
+                className="relative p-[3px]"
                 color="#FFFFFF"
                 size="15"
               />
